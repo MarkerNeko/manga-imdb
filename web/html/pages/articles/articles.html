@@ -1,0 +1,32 @@
+{{define "title"}}บทความ – {{.Website}}{{end}}
+{{define "content"}}
+<main class="page-articles">
+  <section class="hero">
+    <h1>บทความ</h1>
+    <p>ข่าวสาร รีวิว และเรื่องน่ารู้จากโลกมังงะ</p>
+  </section>
+
+  <section class="section">
+    <div class="articles-grid">
+      {{range .Articles}}
+      <article class="article-card">
+        <a href="/articles/{{.Slug}}" class="article-card-link">
+          <div class="article-card-img">
+            <img src="{{.CoverURL}}" alt="{{.Title}}" />
+            <span class="article-card-tag">{{.Tag}}</span>
+          </div>
+          <div class="article-card-body">
+            <h3>{{.Title}}</h3>
+            <p class="article-card-excerpt">{{.Excerpt}}</p>
+            <div class="article-card-meta">
+              <span>{{.Author}}</span>
+              <span>{{.Date}}</span>
+            </div>
+          </div>
+        </a>
+      </article>
+      {{end}}
+    </div>
+  </section>
+</main>
+{{end}}

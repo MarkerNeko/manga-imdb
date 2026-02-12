@@ -1,0 +1,11 @@
+{{define "title"}}{{.StatusCode}} {{.Title}} – {{.Website}}{{end}}
+{{define "content"}}
+<main class="page-error">
+  <section class="error-container">
+    <div class="error-code">{{.StatusCode}}</div>
+    <h1 class="error-title">{{.Title}}</h1>
+    <p class="error-message">{{.Message}}</p>
+    <a href="/" class="error-home-btn">กลับหน้าแรก</a>
+  </section>
+</main>
+{{end}}

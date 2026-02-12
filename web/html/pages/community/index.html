@@ -1,0 +1,32 @@
+{{define "title"}}กระทู้ – {{.Website}}{{end}} {{define "content"}}
+<main class="page-threads">
+  <section class="hero">
+    <h1>กระทู้พูดคุย</h1>
+    <p>แลกเปลี่ยนความเห็น พูดคุยเรื่องมังงะกับเพื่อนๆ</p>
+  </section>
+
+  <section class="section">
+    <div class="threads-list">
+      {{range .Threads}}
+      <a href="/community/{{.ID}}" class="thread-card">
+        <div class="thread-card-left">
+          <img class="thread-avatar" src="{{.AvatarURL}}" alt="{{.Author}}" />
+        </div>
+        <div class="thread-card-body">
+          <h3 class="thread-title">{{.Title}}</h3>
+          <p class="thread-excerpt">{{.Excerpt}}</p>
+          <div class="thread-meta">
+            <span class="thread-author">{{.Author}}</span>
+            <span class="thread-date">{{.Date}}</span>
+            <span class="thread-replies">{{.Replies}} ตอบกลับ</span>
+          </div>
+        </div>
+        <div class="thread-card-right">
+          <span class="thread-tag">{{.Tag}}</span>
+        </div>
+      </a>
+      {{end}}
+    </div>
+  </section>
+</main>
+{{end}}

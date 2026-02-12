@@ -1,0 +1,28 @@
+{{define "title"}}สมัครสมาชิก – {{.Website}}{{end}}
+{{define "content"}}
+<main class="page-auth">
+  <section class="auth-card">
+    <h1>สมัครสมาชิก</h1>
+    <form action="/register" method="post">
+      <label>
+        <span>ชื่อผู้ใช้</span>
+        <input type="text" name="username" required autocomplete="username" />
+      </label>
+      <label>
+        <span>อีเมล</span>
+        <input type="email" name="email" required autocomplete="email" />
+      </label>
+      <label>
+        <span>รหัสผ่าน</span>
+        <input type="password" name="password" required autocomplete="new-password" />
+      </label>
+      <label>
+        <span>ยืนยันรหัสผ่าน</span>
+        <input type="password" name="password_confirm" required autocomplete="new-password" />
+      </label>
+      <button type="submit">สมัคร</button>
+    </form>
+    <p class="auth-link">มีบัญชีอยู่แล้ว? <a href="/login">เข้าสู่ระบบ</a></p>
+  </section>
+</main>
+{{end}}

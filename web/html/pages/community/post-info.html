@@ -1,0 +1,43 @@
+{{define "title"}}{{if .Thread}}{{.Thread.Title}}{{else}}ไม่พบกระทู้{{end}} – {{.Website}}{{end}}
+{{define "content"}}
+<main class="page-post-info">
+  {{if .Thread}}
+  <section class="section">
+    <a href="/community" class="back-link">&larr; กลับไปหน้าชุมชน</a>
+
+    <article class="post-detail">
+      <div class="post-header">
+        <img class="post-avatar" src="{{.Thread.AvatarURL}}" alt="{{.Thread.Author}}" />
+        <div class="post-header-info">
+          <h1 class="post-title">{{.Thread.Title}}</h1>
+          <div class="post-meta">
+            <span class="post-author">{{.Thread.Author}}</span>
+            <span class="post-date">{{.Thread.Date}}</span>
+            <span class="post-tag">{{.Thread.Tag}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-body">
+        <p>{{.Thread.Excerpt}}</p>
+        <p>นี่คือเนื้อหาตัวอย่างของกระทู้ เมื่อเชื่อม DB จริงจะแสดงเนื้อหาเต็ม</p>
+      </div>
+
+      <div class="post-stats">
+        <span>{{.Thread.Replies}} ตอบกลับ</span>
+      </div>
+    </article>
+
+    <section class="post-replies">
+      <h2>ความคิดเห็น</h2>
+      <p class="placeholder">ยังไม่มีความคิดเห็น — เชื่อม DB แล้วจะแสดงข้อมูลจริง</p>
+    </section>
+  </section>
+  {{else}}
+  <section class="section">
+    <p class="placeholder">ไม่พบกระทู้นี้</p>
+    <a href="/community" class="back-link">&larr; กลับไปหน้าชุมชน</a>
+  </section>
+  {{end}}
+</main>
+{{end}}

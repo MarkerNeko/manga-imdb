@@ -1,0 +1,20 @@
+{{define "title"}}เข้าสู่ระบบ – {{.Website}}{{end}}
+{{define "content"}}
+<main class="page-auth">
+  <section class="auth-card">
+    <h1>เข้าสู่ระบบ</h1>
+    <form action="/login" method="post">
+      <label>
+        <span>อีเมล หรือชื่อผู้ใช้</span>
+        <input type="text" name="username" required autocomplete="username" />
+      </label>
+      <label>
+        <span>รหัสผ่าน</span>
+        <input type="password" name="password" required autocomplete="current-password" />
+      </label>
+      <button type="submit">เข้าสู่ระบบ</button>
+    </form>
+    <p class="auth-link">ยังไม่มีบัญชี? <a href="/register">สมัครสมาชิก</a></p>
+  </section>
+</main>
+{{end}}

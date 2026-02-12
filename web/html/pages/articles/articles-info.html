@@ -1,0 +1,34 @@
+{{define "title"}}{{if .Article}}{{.Article.Title}}{{else}}ไม่พบบทความ{{end}} – {{.Website}}{{end}}
+{{define "content"}}
+<main class="page-article-info">
+  {{if .Article}}
+  <section class="section">
+    <a href="/articles" class="back-link">&larr; กลับไปหน้าบทความ</a>
+
+    <article class="article-detail">
+      <div class="article-detail-cover">
+        <img src="{{.Article.CoverURL}}" alt="{{.Article.Title}}" />
+        <span class="article-detail-tag">{{.Article.Tag}}</span>
+      </div>
+
+      <h1 class="article-detail-title">{{.Article.Title}}</h1>
+
+      <div class="article-detail-meta">
+        <span class="article-detail-author">{{.Article.Author}}</span>
+        <span class="article-detail-date">{{.Article.Date}}</span>
+      </div>
+
+      <div class="article-detail-body">
+        <p>{{.Article.Excerpt}}</p>
+        <p>นี่คือเนื้อหาตัวอย่างของบทความ เมื่อเชื่อม DB จริงจะแสดงเนื้อหาเต็ม</p>
+      </div>
+    </article>
+  </section>
+  {{else}}
+  <section class="section">
+    <p class="placeholder">ไม่พบบทความนี้</p>
+    <a href="/articles" class="back-link">&larr; กลับไปหน้าบทความ</a>
+  </section>
+  {{end}}
+</main>
+{{end}}
