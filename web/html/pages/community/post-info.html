@@ -1,9 +1,9 @@
-{{define "title"}}{{if .Thread}}{{.Thread.Title}}{{else}}ไม่พบกระทู้{{end}} – {{.Website}}{{end}}
+{{define "title"}}{{if .Thread}}{{.Thread.Title}}{{else}}{{t "thread_not_found"}}{{end}} – {{.Website}}{{end}}
 {{define "content"}}
 <main class="page-post-info">
   {{if .Thread}}
   <section class="section">
-    <a href="/community" class="back-link">&larr; กลับไปหน้าชุมชน</a>
+    <a href="{{langPrefix}}/community" class="back-link">&larr; {{t "back_to_community"}}</a>
 
     <article class="post-detail">
       <div class="post-header">
@@ -20,23 +20,23 @@
 
       <div class="post-body">
         <p>{{.Thread.Excerpt}}</p>
-        <p>นี่คือเนื้อหาตัวอย่างของกระทู้ เมื่อเชื่อม DB จริงจะแสดงเนื้อหาเต็ม</p>
+        <p>{{t "thread_mock_body"}}</p>
       </div>
 
       <div class="post-stats">
-        <span>{{.Thread.Replies}} ตอบกลับ</span>
+        <span>{{.Thread.Replies}} {{t "replies"}}</span>
       </div>
     </article>
 
     <section class="post-replies">
-      <h2>ความคิดเห็น</h2>
-      <p class="placeholder">ยังไม่มีความคิดเห็น — เชื่อม DB แล้วจะแสดงข้อมูลจริง</p>
+      <h2>{{t "comments_heading"}}</h2>
+      <p class="placeholder">{{t "no_comments_yet"}}</p>
     </section>
   </section>
   {{else}}
   <section class="section">
-    <p class="placeholder">ไม่พบกระทู้นี้</p>
-    <a href="/community" class="back-link">&larr; กลับไปหน้าชุมชน</a>
+    <p class="placeholder">{{t "thread_not_found"}}</p>
+    <a href="{{langPrefix}}/community" class="back-link">&larr; {{t "back_to_community"}}</a>
   </section>
   {{end}}
 </main>

@@ -1,28 +1,28 @@
-{{define "title"}}สมัครสมาชิก – {{.Website}}{{end}}
+{{define "title"}}{{t "register_title"}} – {{.Website}}{{end}}
 {{define "content"}}
 <main class="page-auth">
   <section class="auth-card">
-    <h1>สมัครสมาชิก</h1>
-    <form action="/register" method="post">
+    <h1>{{t "register_title"}}</h1>
+    <form action="{{langPrefix}}/register" method="post">
       <label>
-        <span>ชื่อผู้ใช้</span>
+        <span>{{t "register_username"}}</span>
         <input type="text" name="username" required autocomplete="username" />
       </label>
       <label>
-        <span>อีเมล</span>
+        <span>{{t "register_email"}}</span>
         <input type="email" name="email" required autocomplete="email" />
       </label>
       <label>
-        <span>รหัสผ่าน</span>
+        <span>{{t "register_password"}}</span>
         <input type="password" name="password" required autocomplete="new-password" />
       </label>
       <label>
-        <span>ยืนยันรหัสผ่าน</span>
+        <span>{{t "register_confirm"}}</span>
         <input type="password" name="password_confirm" required autocomplete="new-password" />
       </label>
-      <button type="submit">สมัคร</button>
+      <button type="submit">{{t "register_btn"}}</button>
     </form>
-    <p class="auth-link">มีบัญชีอยู่แล้ว? <a href="/login">เข้าสู่ระบบ</a></p>
+    <p class="auth-link">{{t "register_has_account"}} <a href="{{langPrefix}}/login">{{t "login_title"}}</a></p>
   </section>
 </main>
 {{end}}

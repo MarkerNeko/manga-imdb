@@ -1,20 +1,20 @@
-{{define "title"}}เข้าสู่ระบบ – {{.Website}}{{end}}
+{{define "title"}}{{t "login_title"}} – {{.Website}}{{end}}
 {{define "content"}}
 <main class="page-auth">
   <section class="auth-card">
-    <h1>เข้าสู่ระบบ</h1>
-    <form action="/login" method="post">
+    <h1>{{t "login_title"}}</h1>
+    <form action="{{langPrefix}}/login" method="post">
       <label>
-        <span>อีเมล หรือชื่อผู้ใช้</span>
+        <span>{{t "login_email_label"}}</span>
         <input type="text" name="username" required autocomplete="username" />
       </label>
       <label>
-        <span>รหัสผ่าน</span>
+        <span>{{t "login_password_label"}}</span>
         <input type="password" name="password" required autocomplete="current-password" />
       </label>
-      <button type="submit">เข้าสู่ระบบ</button>
+      <button type="submit">{{t "login_btn"}}</button>
     </form>
-    <p class="auth-link">ยังไม่มีบัญชี? <a href="/register">สมัครสมาชิก</a></p>
+    <p class="auth-link">{{t "login_no_account"}} <a href="{{langPrefix}}/register">{{t "register_title"}}</a></p>
   </section>
 </main>
 {{end}}

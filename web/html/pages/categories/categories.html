@@ -1,18 +1,18 @@
-{{define "title"}}หมวดหมู่มังงะ – {{.Website}}{{end}}
+{{define "title"}}{{t "categories_title"}} – {{.Website}}{{end}}
 {{define "content"}}
 <main class="page-categories">
   <section class="hero">
-    <h1>หมวดหมู่มังงะ</h1>
-    <p>เลือกหมวดหมู่ที่ชอบ แล้วค้นพบมังงะเรื่องใหม่ๆ</p>
+    <h1>{{t "categories_title"}}</h1>
+    <p>{{t "categories_subtitle"}}</p>
   </section>
 
   <section class="section">
     <div class="category-grid">
       {{range .Categories}}
-      <a href="/search?q={{.Name}}" class="category-card" style="--cat-color:{{.Color}}">
+      <a href="{{langPrefix}}/search?q={{.Name}}" class="category-card" style="--cat-color:{{.Color}}">
         <span class="category-icon">{{.Icon}}</span>
         <h3 class="category-name">{{.Name}}</h3>
-        <p class="category-count">{{.Count}} เรื่อง</p>
+        <p class="category-count">{{.Count}} {{t "count_suffix"}}</p>
       </a>
       {{end}}
     </div>

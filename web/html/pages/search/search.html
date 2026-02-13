@@ -1,25 +1,25 @@
-{{define "title"}}ค้นหามังงะ – {{.Website}}{{end}}
+{{define "title"}}{{t "nav_search"}} – {{.Website}}{{end}}
 {{define "content"}}
 <main class="page-search">
   <section class="search-form">
-    <form action="/search" method="get" role="search">
-      <input type="search" name="q" value="{{.Query}}" placeholder="ค้นหาชื่อมังงะ..." />
-      <button type="submit">ค้นหา</button>
+    <form action="{{langPrefix}}/search" method="get" role="search">
+      <input type="search" name="q" value="{{.Query}}" placeholder="{{t "search_placeholder"}}" />
+      <button type="submit">{{t "search_btn"}}</button>
     </form>
   </section>
   {{if .Query}}
   <section class="search-results">
-    <h2>ผลค้นหา "{{.Query}}"</h2>
+    <h2>{{t "search_results_for"}} "{{.Query}}"</h2>
     {{if .Results}}
     <div class="manga-grid">
       {{range .Results}}{{template "components/manga-card" .}}{{end}}
     </div>
     {{else}}
-    <p class="placeholder">ไม่พบผลลัพธ์</p>
+    <p class="placeholder">{{t "no_results"}}</p>
     {{end}}
   </section>
   {{else}}
-  <p class="placeholder">พิมพ์คำค้นด้านบนเพื่อค้นหามังงะ</p>
+  <p class="placeholder">{{t "search_hint"}}</p>
   {{end}}
 </main>
 {{end}}

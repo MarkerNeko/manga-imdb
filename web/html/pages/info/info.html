@@ -8,9 +8,9 @@
       <div class="manga-detail-meta">
         <h1>{{.Manga.Title}}</h1>
         <div class="manga-detail-score">
-          <span class="stars" aria-label="คะแนน {{.Manga.Score}} จาก 10">{{stars .Manga.Score}}</span>
+          <span class="stars" aria-label="{{.Manga.Score}} / 10">{{stars .Manga.Score}}</span>
           <span class="score-value">{{.Manga.Score}}</span>
-          <span class="score-count">{{.Manga.ReviewCount}} รีวิว</span>
+          <span class="score-count">{{.Manga.ReviewCount}} {{t "review_suffix"}}</span>
         </div>
         <div class="manga-detail-categories">
           {{range .Manga.Categories}}<span class="tag">{{.}}</span>{{end}}
@@ -18,14 +18,14 @@
       </div>
     </div>
     <div class="manga-detail-synopsis">
-      <h2>เรื่องย่อ</h2>
+      <h2>{{t "synopsis"}}</h2>
       <p>{{.Manga.Synopsis}}</p>
     </div>
     <section class="manga-reviews">
-      <h2>รีวิว / คอมเมนต์</h2>
+      <h2>{{t "reviews"}}</h2>
       <div class="review-form">
-        <p>ต้องเข้าสู่ระบบเพื่อให้คะแนนและคอมเมนต์</p>
-        <a href="/login">เข้าสู่ระบบ</a>
+        <p>{{t "login_to_review"}}</p>
+        <a href="{{langPrefix}}/login">{{t "login_title"}}</a>
       </div>
       <ul class="comment-list">
         {{range .Comments}}
@@ -35,13 +35,13 @@
           — {{.Comment}}
         </li>
         {{else}}
-        <li class="placeholder">ยังไม่มีคอมเมนต์</li>
+        <li class="placeholder">{{t "no_comments"}}</li>
         {{end}}
       </ul>
     </section>
   </article>
   {{else}}
-  <p class="placeholder">ไม่พบมังงะ (ID: {{.MangaID}})</p>
+  <p class="placeholder">{{t "manga_not_found"}} (ID: {{.MangaID}})</p>
   {{end}}
 </main>
 {{end}}

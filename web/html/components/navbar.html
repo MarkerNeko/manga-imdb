@@ -2,74 +2,62 @@
 <nav class="navbar">
   <div class="navbar-container">
     <!-- Logo -->
-    <a href="/" class="navbar-logo">
+    <a href="{{langPrefix}}/" class="navbar-logo">
       <span class="logo-icon">📖</span>
       <span class="logo-text">Manga IMDB</span>
     </a>
 
     <!-- Desktop Menu -->
     <ul class="navbar-menu">
-      <li><a href="/" class="nav-link" data-path="/">หน้าแรก</a></li>
-      <li>
-        <a href="/categories" class="nav-link" data-path="/categories">
-          หมวดหมู่
-        </a>
-      </li>
-      <li>
-        <a href="/articles" class="nav-link" data-path="/articles">บทความ</a>
-      </li>
-      <li>
-        <a href="/community" class="nav-link" data-path="/community">ชุมชน</a>
-      </li>
-      <li>
-        <a href="/about" class="nav-link" data-path="/about">เกี่ยวกับเรา</a>
-      </li>
+      <li><a href="{{langPrefix}}/" class="nav-link" data-path="{{langPrefix}}/">{{t "nav_home"}}</a></li>
+      <li><a href="{{langPrefix}}/categories" class="nav-link" data-path="{{langPrefix}}/categories">{{t "nav_categories"}}</a></li>
+      <li><a href="{{langPrefix}}/articles" class="nav-link" data-path="{{langPrefix}}/articles">{{t "nav_articles"}}</a></li>
+      <li><a href="{{langPrefix}}/community" class="nav-link" data-path="{{langPrefix}}/community">{{t "nav_community"}}</a></li>
+      <li><a href="{{langPrefix}}/about" class="nav-link" data-path="{{langPrefix}}/about">{{t "nav_about"}}</a></li>
     </ul>
 
     <!-- Right Section -->
     <div class="navbar-actions">
-      <a href="/search" class="search-btn" aria-label="ค้นหา">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
+      <a href="{{langPrefix}}/search" class="search-btn" aria-label="{{t "nav_search"}}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <path d="m21 21-4.35-4.35"></path>
         </svg>
       </a>
+
+      <!-- Language Switcher -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" onclick="toggleLangMenu(event)">
+          <span class="lang-flag">{{if eq .Lang "th"}}🇹🇭{{else}}🇬🇧{{end}}</span>
+          <span class="lang-code">{{.Lang}}</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <a href="#" class="lang-option{{if eq .Lang "th"}} active{{end}}" data-lang="th">
+            <span>🇹🇭</span> ไทย
+          </a>
+          <a href="#" class="lang-option{{if eq .Lang "en"}} active{{end}}" data-lang="en">
+            <span>🇬🇧</span> English
+          </a>
+        </div>
+      </div>
+
       {{if .User}}
       <div class="nav-profile" onclick="toggleProfileMenu(event)">
-        <img
-          class="nav-avatar"
-          src="{{.User.AvatarURL}}"
-          alt="{{.User.Username}}"
-        />
+        <img class="nav-avatar" src="{{.User.AvatarURL}}" alt="{{.User.Username}}" />
         <span class="nav-username">{{.User.Username}}</span>
         <div class="profile-dropdown" id="profileDropdown">
           <div class="profile-dropdown-header">
-            <img
-              class="profile-dropdown-avatar"
-              src="{{.User.AvatarURL}}"
-              alt="{{.User.Username}}"
-            />
+            <img class="profile-dropdown-avatar" src="{{.User.AvatarURL}}" alt="{{.User.Username}}" />
             <span>{{.User.Username}}</span>
           </div>
-          <a href="/profile" class="profile-dropdown-item">โปรไฟล์ของฉัน</a>
-          <a href="/favorites" class="profile-dropdown-item">รายการโปรด</a>
-          <a
-            href="/logout"
-            class="profile-dropdown-item profile-dropdown-item--danger"
-            >ออกจากระบบ</a
-          >
+          <a href="{{langPrefix}}/profile" class="profile-dropdown-item">{{t "my_profile"}}</a>
+          <a href="{{langPrefix}}/favorites" class="profile-dropdown-item">{{t "favorites"}}</a>
+          <a href="{{langPrefix}}/logout" class="profile-dropdown-item profile-dropdown-item--danger">{{t "logout"}}</a>
         </div>
       </div>
       {{else}}
-      <a href="/login" class="nav-auth-btn">Sign in</a>
-      <a href="/register" class="nav-auth-btn nav-auth-btn--primary">Sign up</a>
+      <a href="{{langPrefix}}/login" class="nav-auth-btn">{{t "sign_in"}}</a>
+      <a href="{{langPrefix}}/register" class="nav-auth-btn nav-auth-btn--primary">{{t "sign_up"}}</a>
       {{end}}
       <button class="mobile-toggle" onclick="toggleMobileMenu()">
         <span class="hamburger"></span>
@@ -79,30 +67,31 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/" class="mobile-link">หน้าแรก</a>
-    <a href="/categories" class="mobile-link">หมวดหมู่</a>
-    <a href="/articles" class="mobile-link">บทความ</a>
-    <a href="/community" class="mobile-link">ชุมชน</a>
-    <a href="/about" class="mobile-link">เกี่ยวกับเรา</a>
-    <a href="/search" class="mobile-link">ค้นหา</a>
+    <a href="{{langPrefix}}/" class="mobile-link">{{t "nav_home"}}</a>
+    <a href="{{langPrefix}}/categories" class="mobile-link">{{t "nav_categories"}}</a>
+    <a href="{{langPrefix}}/articles" class="mobile-link">{{t "nav_articles"}}</a>
+    <a href="{{langPrefix}}/community" class="mobile-link">{{t "nav_community"}}</a>
+    <a href="{{langPrefix}}/about" class="mobile-link">{{t "nav_about"}}</a>
+    <a href="{{langPrefix}}/search" class="mobile-link">{{t "nav_search"}}</a>
+
+    <!-- Mobile Language Switcher -->
+    <div class="mobile-lang">
+      <a href="#" class="mobile-lang-btn{{if eq .Lang "th"}} active{{end}}" data-lang="th">🇹🇭 ไทย</a>
+      <a href="#" class="mobile-lang-btn{{if eq .Lang "en"}} active{{end}}" data-lang="en">🇬🇧 EN</a>
+    </div>
+
     {{if .User}}
     <div class="mobile-profile">
-      <img
-        class="mobile-profile-avatar"
-        src="{{.User.AvatarURL}}"
-        alt="{{.User.Username}}"
-      />
+      <img class="mobile-profile-avatar" src="{{.User.AvatarURL}}" alt="{{.User.Username}}" />
       <span class="mobile-profile-name">{{.User.Username}}</span>
     </div>
-    <a href="/profile" class="mobile-link">โปรไฟล์ของฉัน</a>
-    <a href="/favorites" class="mobile-link">รายการโปรด</a>
-    <a href="/logout" class="mobile-link mobile-link--danger">ออกจากระบบ</a>
+    <a href="{{langPrefix}}/profile" class="mobile-link">{{t "my_profile"}}</a>
+    <a href="{{langPrefix}}/favorites" class="mobile-link">{{t "favorites"}}</a>
+    <a href="{{langPrefix}}/logout" class="mobile-link mobile-link--danger">{{t "logout"}}</a>
     {{else}}
     <div class="mobile-auth">
-      <a href="/login" class="mobile-auth-btn">Sign in</a>
-      <a href="/register" class="mobile-auth-btn mobile-auth-btn--primary"
-        >Sign up</a
-      >
+      <a href="{{langPrefix}}/login" class="mobile-auth-btn">{{t "sign_in"}}</a>
+      <a href="{{langPrefix}}/register" class="mobile-auth-btn mobile-auth-btn--primary">{{t "sign_up"}}</a>
     </div>
     {{end}}
   </div>
@@ -116,17 +105,12 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: linear-gradient(
-      135deg,
-      rgba(75, 34, 34, 0.95) 0%,
-      rgba(45, 20, 50, 0.95) 100%
-    );
+    background: linear-gradient(135deg, rgba(75, 34, 34, 0.95) 0%, rgba(45, 20, 50, 0.95) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   }
-
   .navbar-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -148,16 +132,11 @@
     color: #fff;
     transition: all 0.3s ease;
   }
-
-  .navbar-logo:hover {
-    transform: scale(1.05);
-  }
-
+  .navbar-logo:hover { transform: scale(1.05); }
   .logo-icon {
     font-size: 1.8rem;
     filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
   }
-
   .logo-text {
     background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #f472b6 100%);
     -webkit-background-clip: text;
@@ -175,7 +154,6 @@
     margin: 0;
     padding: 0;
   }
-
   .nav-link {
     display: inline-flex;
     align-items: center;
@@ -189,37 +167,20 @@
     position: relative;
     overflow: hidden;
   }
-
   .nav-link::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(168, 85, 247, 0.2) 0%,
-      rgba(236, 72, 153, 0.2) 100%
-    );
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 12px;
   }
-
-  .nav-link:hover {
-    color: #fff;
-    transform: translateY(-2px);
-  }
-
-  .nav-link:hover::before {
-    opacity: 1;
-  }
-
+  .nav-link:hover { color: #fff; transform: translateY(-2px); }
+  .nav-link:hover::before { opacity: 1; }
   .nav-link.active {
     color: #fff;
-    background: linear-gradient(
-      135deg,
-      rgba(168, 85, 247, 0.3) 0%,
-      rgba(236, 72, 153, 0.3) 100%
-    );
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
     box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
   }
 
@@ -227,9 +188,8 @@
   .navbar-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
   }
-
   .search-btn {
     display: flex;
     align-items: center;
@@ -244,16 +204,88 @@
     transition: all 0.3s ease;
     text-decoration: none;
   }
-
   .search-btn:hover {
-    background: linear-gradient(
-      135deg,
-      rgba(168, 85, 247, 0.3) 0%,
-      rgba(236, 72, 153, 0.3) 100%
-    );
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
     color: #fff;
     transform: scale(1.05);
     box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+  }
+
+  /* Language Switcher */
+  .lang-switcher { position: relative; }
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  .lang-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(168, 85, 247, 0.4);
+  }
+  .lang-flag { font-size: 1.1rem; }
+  .lang-code { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; }
+  .lang-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 140px;
+    background: rgba(35, 18, 30, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    z-index: 1001;
+    backdrop-filter: blur(20px);
+  }
+  .lang-dropdown.active { display: block; }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  .lang-option:hover { background: rgba(168, 85, 247, 0.15); color: #fff; }
+  .lang-option.active { color: #c084fc; font-weight: 600; }
+
+  /* Mobile Language */
+  .mobile-lang {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 4px;
+  }
+  .mobile-lang-btn {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.2s;
+  }
+  .mobile-lang-btn:hover { border-color: rgba(168, 85, 247, 0.4); color: #fff; }
+  .mobile-lang-btn.active {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.25));
+    border-color: rgba(168, 85, 247, 0.5);
+    color: #fff;
+    font-weight: 600;
   }
 
   /* Profile avatar + dropdown (desktop) */
@@ -267,26 +299,11 @@
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.05);
-    transition:
-      background 0.2s,
-      border-color 0.2s;
+    transition: background 0.2s, border-color 0.2s;
   }
-  .nav-profile:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(168, 85, 247, 0.4);
-  }
-  .nav-avatar {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(168, 85, 247, 0.5);
-  }
-  .nav-username {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
-  }
+  .nav-profile:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(168, 85, 247, 0.4); }
+  .nav-avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(168, 85, 247, 0.5); }
+  .nav-username { font-size: 0.9rem; font-weight: 500; color: rgba(255, 255, 255, 0.9); }
 
   /* Dropdown */
   .profile-dropdown {
@@ -303,259 +320,59 @@
     z-index: 1001;
     backdrop-filter: blur(20px);
   }
-  .profile-dropdown.active {
-    display: block;
-  }
-  .profile-dropdown-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-  .profile-dropdown-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(168, 85, 247, 0.5);
-  }
-  .profile-dropdown-item {
-    display: block;
-    padding: 12px 16px;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    transition:
-      background 0.15s,
-      color 0.15s;
-  }
-  .profile-dropdown-item:hover {
-    background: rgba(168, 85, 247, 0.15);
-    color: #fff;
-  }
-  .profile-dropdown-item--danger {
-    color: #f87171;
-  }
-  .profile-dropdown-item--danger:hover {
-    background: rgba(248, 113, 113, 0.15);
-    color: #f87171;
-  }
+  .profile-dropdown.active { display: block; }
+  .profile-dropdown-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); font-weight: 600; font-size: 0.95rem; }
+  .profile-dropdown-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(168, 85, 247, 0.5); }
+  .profile-dropdown-item { display: block; padding: 12px 16px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.8); text-decoration: none; transition: background 0.15s, color 0.15s; }
+  .profile-dropdown-item:hover { background: rgba(168, 85, 247, 0.15); color: #fff; }
+  .profile-dropdown-item--danger { color: #f87171; }
+  .profile-dropdown-item--danger:hover { background: rgba(248, 113, 113, 0.15); color: #f87171; }
 
   /* Mobile profile */
-  .mobile-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 20px;
-    margin-top: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .mobile-profile-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(168, 85, 247, 0.5);
-  }
-  .mobile-profile-name {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #fff;
-  }
-  .mobile-link--danger {
-    color: #f87171;
-  }
+  .mobile-profile { display: flex; align-items: center; gap: 12px; padding: 16px 20px; margin-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .mobile-profile-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(168, 85, 247, 0.5); }
+  .mobile-profile-name { font-weight: 600; font-size: 1rem; color: #fff; }
+  .mobile-link--danger { color: #f87171; }
 
   /* Auth buttons (desktop) */
-  .nav-auth-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 18px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 10px;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: transparent;
-    transition: all 0.25s ease;
-  }
-  .nav-auth-btn:hover {
-    color: #fff;
-    border-color: rgba(168, 85, 247, 0.5);
-    background: rgba(168, 85, 247, 0.15);
-  }
-  .nav-auth-btn--primary {
-    color: #fff;
-    border: none;
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-    box-shadow: 0 2px 12px rgba(168, 85, 247, 0.35);
-  }
-  .nav-auth-btn--primary:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.5);
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-  }
+  .nav-auth-btn { display: inline-flex; align-items: center; padding: 8px 18px; font-size: 0.9rem; font-weight: 500; border-radius: 10px; text-decoration: none; color: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); background: transparent; transition: all 0.25s ease; }
+  .nav-auth-btn:hover { color: #fff; border-color: rgba(168, 85, 247, 0.5); background: rgba(168, 85, 247, 0.15); }
+  .nav-auth-btn--primary { color: #fff; border: none; background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); box-shadow: 0 2px 12px rgba(168, 85, 247, 0.35); }
+  .nav-auth-btn--primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); }
 
   /* Mobile Toggle */
-  .mobile-toggle {
-    display: none;
-    width: 44px;
-    height: 44px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .hamburger,
-  .hamburger::before,
-  .hamburger::after {
-    position: absolute;
-    width: 20px;
-    height: 2px;
-    background: #fff;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  .hamburger {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .hamburger::before,
-  .hamburger::after {
-    content: "";
-    left: 0;
-  }
-
-  .hamburger::before {
-    top: -6px;
-  }
-
-  .hamburger::after {
-    top: 6px;
-  }
-
-  .mobile-toggle.active .hamburger {
-    background: transparent;
-  }
-
-  .mobile-toggle.active .hamburger::before {
-    top: 0;
-    transform: rotate(45deg);
-  }
-
-  .mobile-toggle.active .hamburger::after {
-    top: 0;
-    transform: rotate(-45deg);
-  }
+  .mobile-toggle { display: none; width: 44px; height: 44px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; cursor: pointer; position: relative; }
+  .hamburger, .hamburger::before, .hamburger::after { position: absolute; width: 20px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s ease; }
+  .hamburger { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+  .hamburger::before, .hamburger::after { content: ""; left: 0; }
+  .hamburger::before { top: -6px; }
+  .hamburger::after { top: 6px; }
+  .mobile-toggle.active .hamburger { background: transparent; }
+  .mobile-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
+  .mobile-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
 
   /* Mobile Menu */
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    padding: 16px 24px 24px;
-    background: linear-gradient(
-      135deg,
-      rgba(75, 34, 34, 0.98) 0%,
-      rgba(45, 20, 50, 0.98) 100%
-    );
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-
-  .mobile-link {
-    padding: 16px 20px;
-    color: rgba(255, 255, 255, 0.8);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    margin-bottom: 8px;
-  }
-
-  .mobile-link:hover,
-  .mobile-link:active,
-  .mobile-link.active {
-    color: #fff;
-    background: linear-gradient(
-      135deg,
-      rgba(168, 85, 247, 0.3) 0%,
-      rgba(236, 72, 153, 0.3) 100%
-    );
-  }
-
-  /* Body padding for fixed navbar */
-  body {
-    padding-top: 70px;
-  }
+  .mobile-menu { display: none; flex-direction: column; padding: 16px 24px 24px; background: linear-gradient(135deg, rgba(75, 34, 34, 0.98) 0%, rgba(45, 20, 50, 0.98) 100%); border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .mobile-menu.active { display: flex; }
+  .mobile-link { padding: 16px 20px; color: rgba(255, 255, 255, 0.8); text-decoration: none; font-weight: 500; font-size: 1rem; border-radius: 12px; transition: all 0.3s ease; margin-bottom: 8px; }
+  .mobile-link:hover, .mobile-link:active, .mobile-link.active { color: #fff; background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%); }
+  body { padding-top: 70px; }
 
   /* Mobile auth buttons */
-  .mobile-auth {
-    display: flex;
-    gap: 10px;
-    margin-top: 12px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  .mobile-auth-btn {
-    flex: 1;
-    text-align: center;
-    padding: 12px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    border-radius: 12px;
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.25s ease;
-  }
-  .mobile-auth-btn:hover {
-    color: #fff;
-    border-color: rgba(168, 85, 247, 0.5);
-  }
-  .mobile-auth-btn--primary {
-    color: #fff;
-    border: none;
-    background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-  }
+  .mobile-auth { display: flex; gap: 10px; margin-top: 12px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .mobile-auth-btn { flex: 1; text-align: center; padding: 12px; font-size: 0.95rem; font-weight: 500; border-radius: 12px; text-decoration: none; color: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.25s ease; }
+  .mobile-auth-btn:hover { color: #fff; border-color: rgba(168, 85, 247, 0.5); }
+  .mobile-auth-btn--primary { color: #fff; border: none; background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .navbar-menu {
-      display: none;
-    }
-
-    .mobile-toggle {
-      display: block;
-    }
-
-    .nav-auth-btn,
-    .nav-profile {
-      display: none;
-    }
+    .navbar-menu { display: none; }
+    .mobile-toggle { display: block; }
+    .nav-auth-btn, .nav-profile, .lang-switcher { display: none; }
   }
-
   @media (max-width: 480px) {
-    .navbar-container {
-      padding: 0 16px;
-    }
-
-    .logo-text {
-      font-size: 1.2rem;
-    }
+    .navbar-container { padding: 0 16px; }
+    .logo-text { font-size: 1.2rem; }
   }
 </style>
 
@@ -567,12 +384,10 @@
     mobileToggle.classList.toggle("active");
   }
 
-  // Close mobile menu when clicking outside
   document.addEventListener("click", (e) => {
     const navbar = document.querySelector(".navbar");
     const mobileMenu = document.getElementById("mobileMenu");
     const mobileToggle = document.querySelector(".mobile-toggle");
-
     if (!navbar.contains(e.target) && mobileMenu.classList.contains("active")) {
       mobileMenu.classList.remove("active");
       mobileToggle.classList.remove("active");
@@ -582,25 +397,53 @@
   // Active menu highlight
   (function () {
     var path = window.location.pathname;
-    // Desktop nav-links
-    document
-      .querySelectorAll(".navbar-menu .nav-link[data-path]")
-      .forEach(function (a) {
-        var dp = a.getAttribute("data-path");
-        if (dp === "/" ? path === "/" : path.startsWith(dp)) {
-          a.classList.add("active");
-        }
-      });
-    // Mobile links
-    document
-      .querySelectorAll(".mobile-menu .mobile-link")
-      .forEach(function (a) {
-        var href = a.getAttribute("href");
-        if (href === "/" ? path === "/" : path.startsWith(href)) {
-          a.classList.add("active");
-        }
-      });
+    document.querySelectorAll(".navbar-menu .nav-link[data-path]").forEach(function (a) {
+      var dp = a.getAttribute("data-path");
+      // exact match for home, startsWith for others
+      if (dp.endsWith("/") ? path === dp : path.startsWith(dp)) {
+        a.classList.add("active");
+      }
+    });
+    document.querySelectorAll(".mobile-menu .mobile-link").forEach(function (a) {
+      var href = a.getAttribute("href");
+      if (href.endsWith("/") ? path === href : path.startsWith(href)) {
+        a.classList.add("active");
+      }
+    });
   })();
+
+  // Language switcher (desktop)
+  function toggleLangMenu(e) {
+    e.stopPropagation();
+    document.getElementById("langDropdown").classList.toggle("active");
+  }
+  document.addEventListener("click", function () {
+    var dd = document.getElementById("langDropdown");
+    if (dd) dd.classList.remove("active");
+  });
+
+  // Switch language: replace /{currentLang}/ with /{newLang}/ in current URL
+  function switchLang(newLang) {
+    var path = window.location.pathname;
+    var newPath = path.replace(/^\/(th|en)(\/|$)/, "/" + newLang + "$2");
+    window.location.href = newPath + window.location.search + window.location.hash;
+  }
+
+  // Desktop lang options
+  document.querySelectorAll(".lang-option").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      switchLang(this.getAttribute("data-lang"));
+    });
+  });
+
+  // Mobile lang buttons
+  document.querySelectorAll(".mobile-lang-btn").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.preventDefault();
+      switchLang(this.getAttribute("data-lang"));
+    });
+  });
 
   // Profile dropdown toggle
   function toggleProfileMenu(e) {

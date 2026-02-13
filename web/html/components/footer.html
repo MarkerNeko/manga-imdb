@@ -3,59 +3,49 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <a href="/" class="footer-logo">
+        <a href="{{langPrefix}}/" class="footer-logo">
           <span class="footer-logo-icon">📖</span>
           <span class="footer-logo-text">Manga IMDB</span>
         </a>
-        <p class="footer-desc">
-          แหล่งรวมรีวิวมังงะที่ใหญ่ที่สุด ค้นหา ให้คะแนน
-          และแชร์ความเห็นเกี่ยวกับมังงะเรื่องโปรดของคุณ อ่านรีวิวจากผู้อ่านจริง
-          พร้อมอันดับมังงะยอดนิยมอัปเดตทุกเดือน
-        </p>
+        <p class="footer-desc">{{t "footer_desc"}}</p>
       </div>
 
-      <nav class="footer-nav" aria-label="ลิงก์ท้ายหน้า">
+      <nav class="footer-nav" aria-label="Footer links">
         <div class="footer-col">
-          <h3>สำรวจ</h3>
+          <h3>{{t "footer_explore"}}</h3>
           <ul>
-            <li><a href="/#NewManga">มังงะใหม่ล่าสุด</a></li>
-            <li><a href="/#HotManga">มังงะมาแรงประจำสัปดาห์</a></li>
-            <li><a href="/#Top10Rating">Top 10 มังงะเรตติ้งสูงสุด</a></li>
-            <li><a href="/search">ค้นหามังงะ</a></li>
+            <li><a href="{{langPrefix}}/#NewManga">{{t "footer_new_manga"}}</a></li>
+            <li><a href="{{langPrefix}}/#HotManga">{{t "footer_hot_manga"}}</a></li>
+            <li><a href="{{langPrefix}}/#Top10Rating">{{t "footer_top10"}}</a></li>
+            <li><a href="{{langPrefix}}/search">{{t "footer_search"}}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h3>หมวดหมู่ยอดนิยม</h3>
+          <h3>{{t "footer_popular_cat"}}</h3>
           <ul>
-            <li><a href="/search?q=action">แอคชัน</a></li>
-            <li><a href="/search?q=romance">โรแมนซ์</a></li>
-            <li><a href="/search?q=fantasy">แฟนตาซี</a></li>
-            <li><a href="/search?q=comedy">คอมเมดี้</a></li>
-            <li><a href="/search?q=horror">สยองขวัญ</a></li>
+            <li><a href="{{langPrefix}}/search?q=action">{{t "footer_action"}}</a></li>
+            <li><a href="{{langPrefix}}/search?q=romance">{{t "footer_romance"}}</a></li>
+            <li><a href="{{langPrefix}}/search?q=fantasy">{{t "footer_fantasy"}}</a></li>
+            <li><a href="{{langPrefix}}/search?q=comedy">{{t "footer_comedy"}}</a></li>
+            <li><a href="{{langPrefix}}/search?q=horror">{{t "footer_horror"}}</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h3>บัญชีผู้ใช้</h3>
+          <h3>{{t "footer_account"}}</h3>
           <ul>
-            <li><a href="/login">เข้าสู่ระบบ</a></li>
-            <li><a href="/register">สมัครสมาชิก</a></li>
+            <li><a href="{{langPrefix}}/login">{{t "sign_in"}}</a></li>
+            <li><a href="{{langPrefix}}/register">{{t "sign_up"}}</a></li>
           </ul>
         </div>
       </nav>
     </div>
 
     <div class="footer-seo">
-      <p>
-        Manga IMDB — เว็บไซต์รีวิวมังงะออนไลน์
-        รวมข้อมูลมังงะยอดนิยมกว่าหลายพันเรื่อง ทั้ง One Piece, Demon Slayer,
-        Jujutsu Kaisen, Chainsaw Man, Attack on Titan, Spy x Family และอีกมากมาย
-        ดูคะแนนรีวิวจากผู้อ่านจริง เรื่องย่อ หมวดหมู่
-        และอันดับมังงะยอดนิยมประจำเดือน ประจำปี และตลอดกาล
-      </p>
+      <p>Manga IMDB — {{t "footer_seo"}}</p>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 {{.Website}}. สร้างด้วยความรักต่อมังงะ</p>
+      <p>&copy; 2026 {{.Website}}. {{t "footer_copyright"}}</p>
     </div>
   </div>
 </footer>
@@ -63,117 +53,26 @@
 <style>
   .site-footer {
     margin-top: 4rem;
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(45, 20, 50, 0.5) 20%,
-      rgba(26, 15, 20, 0.95) 100%
-    );
+    background: linear-gradient(180deg, transparent 0%, rgba(45, 20, 50, 0.5) 20%, rgba(26, 15, 20, 0.95) 100%);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
-  .footer-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 3rem 1.5rem 1.5rem;
-  }
-
-  /* Top: brand + nav */
-  .footer-top {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  @media (min-width: 768px) {
-    .footer-top {
-      grid-template-columns: 1.2fr 2fr;
-    }
-  }
-
-  /* Brand */
-  .footer-brand {
-    max-width: 380px;
-  }
-  .footer-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-  }
-  .footer-logo-icon {
-    font-size: 1.5rem;
-  }
-  .footer-logo-text {
-    background: linear-gradient(135deg, #c084fc, #e879f9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .footer-desc {
-    margin: 0;
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: rgba(245, 230, 239, 0.6);
-  }
-
-  /* Nav columns */
-  .footer-nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 1.5rem;
-  }
-  .footer-col h3 {
-    margin: 0 0 0.75rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: rgba(245, 230, 239, 0.5);
-  }
-  .footer-col ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .footer-col li {
-    margin-bottom: 0.5rem;
-  }
-  .footer-col a {
-    color: rgba(245, 230, 239, 0.75);
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-  }
-  .footer-col a:hover {
-    color: #c084fc;
-  }
-
-  /* SEO block */
-  .footer-seo {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .footer-seo p {
-    margin: 0;
-    font-size: 0.82rem;
-    line-height: 1.8;
-    color: rgba(245, 230, 239, 0.4);
-  }
-
-  /* Bottom bar */
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    padding-top: 1.25rem;
-    text-align: center;
-  }
-  .footer-bottom p {
-    margin: 0;
-    font-size: 0.82rem;
-    color: rgba(245, 230, 239, 0.4);
-  }
+  .footer-inner { max-width: 1280px; margin: 0 auto; padding: 3rem 1.5rem 1.5rem; }
+  .footer-top { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 2rem; }
+  @media (min-width: 768px) { .footer-top { grid-template-columns: 1.2fr 2fr; } }
+  .footer-brand { max-width: 380px; }
+  .footer-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 1.25rem; margin-bottom: 0.75rem; }
+  .footer-logo-icon { font-size: 1.5rem; }
+  .footer-logo-text { background: linear-gradient(135deg, #c084fc, #e879f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .footer-desc { margin: 0; font-size: 0.88rem; line-height: 1.7; color: rgba(245, 230, 239, 0.6); }
+  .footer-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.5rem; }
+  .footer-col h3 { margin: 0 0 0.75rem; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(245, 230, 239, 0.5); }
+  .footer-col ul { list-style: none; margin: 0; padding: 0; }
+  .footer-col li { margin-bottom: 0.5rem; }
+  .footer-col a { color: rgba(245, 230, 239, 0.75); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-col a:hover { color: #c084fc; }
+  .footer-seo { border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 1.5rem; margin-bottom: 1.5rem; }
+  .footer-seo p { margin: 0; font-size: 0.82rem; line-height: 1.8; color: rgba(245, 230, 239, 0.4); }
+  .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 1.25rem; text-align: center; }
+  .footer-bottom p { margin: 0; font-size: 0.82rem; color: rgba(245, 230, 239, 0.4); }
 </style>
 {{end}}

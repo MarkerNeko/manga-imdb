@@ -1,14 +1,14 @@
 {{define "components/manga-card"}}
-<a href="/info/{{.ID}}" class="manga-card">
+<a href="{{langPrefix}}/info/{{.ID}}" class="manga-card">
   <div class="manga-card-cover">
     <img src="{{.CoverURL}}" alt="{{.Title}}" />
     <span class="manga-card-score">{{.Score}}</span>
   </div>
   <h3 class="manga-card-title">{{.Title}}</h3>
   <p class="manga-card-meta">
-    <span class="stars" aria-label="คะแนน {{.Score}} จาก 10">{{stars .Score}}</span>
+    <span class="stars" aria-label="{{.Score}} / 10">{{stars .Score}}</span>
     <span class="score-num">{{.Score}}</span>
-    <span class="review-count">{{.ReviewCount}} รีวิว</span>
+    <span class="review-count">{{.ReviewCount}} {{t "review_suffix"}}</span>
   </p>
 </a>
 {{end}}

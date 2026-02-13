@@ -1,14 +1,14 @@
-{{define "title"}}กระทู้ – {{.Website}}{{end}} {{define "content"}}
+{{define "title"}}{{t "nav_community"}} – {{.Website}}{{end}} {{define "content"}}
 <main class="page-threads">
   <section class="hero">
-    <h1>กระทู้พูดคุย</h1>
-    <p>แลกเปลี่ยนความเห็น พูดคุยเรื่องมังงะกับเพื่อนๆ</p>
+    <h1>{{t "community_title"}}</h1>
+    <p>{{t "community_subtitle"}}</p>
   </section>
 
   <section class="section">
     <div class="threads-list">
       {{range .Threads}}
-      <a href="/community/{{.ID}}" class="thread-card">
+      <a href="{{langPrefix}}/community/{{.ID}}" class="thread-card">
         <div class="thread-card-left">
           <img class="thread-avatar" src="{{.AvatarURL}}" alt="{{.Author}}" />
         </div>
@@ -18,7 +18,7 @@
           <div class="thread-meta">
             <span class="thread-author">{{.Author}}</span>
             <span class="thread-date">{{.Date}}</span>
-            <span class="thread-replies">{{.Replies}} ตอบกลับ</span>
+            <span class="thread-replies">{{.Replies}} {{t "replies"}}</span>
           </div>
         </div>
         <div class="thread-card-right">

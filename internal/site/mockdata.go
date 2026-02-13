@@ -39,6 +39,7 @@ var mockMangaList = []MangaCard{
 	{ID: "10", Title: "Oshi no Ko", CoverURL: "https://picsum.photos/seed/onk/280/400", Score: "8.7", ReviewCount: 4560},
 	{ID: "11", Title: "Frieren", CoverURL: "https://picsum.photos/seed/fr/280/400", Score: "9.1", ReviewCount: 2890},
 	{ID: "12", Title: "Dandadan", CoverURL: "https://picsum.photos/seed/ddd/280/400", Score: "8.6", ReviewCount: 2100},
+	{ID: "13", Title: "Dandadan22222", CoverURL: "https://picsum.photos/seed/ddd/280/400", Score: "8.6", ReviewCount: 2100},
 }
 
 var mockSynopsis = map[string]string{
@@ -80,11 +81,11 @@ var mockComments = map[string][]Comment{
 	"3": {{Username: "Gojo", Score: 10, Comment: "Gojo sensei เจ๋งสุดๆ"}},
 }
 
-func MockNewManga() []MangaCard       { return mockMangaList[6:12] }
-func MockTrendingManga() []MangaCard  { return mockMangaList[0:6] }
-func MockTop10Monthly() []MangaCard   { return mockMangaList[0:10] }
-func MockTop10Yearly() []MangaCard    { return mockMangaList[0:10] }
-func MockTop10AllTime() []MangaCard   { return mockMangaList[0:10] }
+func MockNewManga() []MangaCard      { return mockMangaList[6:13] }
+func MockTrendingManga() []MangaCard { return mockMangaList[0:6] }
+func MockTop10Monthly() []MangaCard  { return mockMangaList[0:10] }
+func MockTop10Yearly() []MangaCard   { return mockMangaList[0:10] }
+func MockTop10AllTime() []MangaCard  { return mockMangaList[0:10] }
 
 func MockMangaByID(id string) *MangaDetail {
 	for _, m := range mockMangaList {

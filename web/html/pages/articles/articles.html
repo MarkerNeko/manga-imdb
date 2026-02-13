@@ -1,16 +1,16 @@
-{{define "title"}}บทความ – {{.Website}}{{end}}
+{{define "title"}}{{t "articles_title"}} – {{.Website}}{{end}}
 {{define "content"}}
 <main class="page-articles">
   <section class="hero">
-    <h1>บทความ</h1>
-    <p>ข่าวสาร รีวิว และเรื่องน่ารู้จากโลกมังงะ</p>
+    <h1>{{t "articles_title"}}</h1>
+    <p>{{t "articles_subtitle"}}</p>
   </section>
 
   <section class="section">
     <div class="articles-grid">
       {{range .Articles}}
       <article class="article-card">
-        <a href="/articles/{{.Slug}}" class="article-card-link">
+        <a href="{{langPrefix}}/articles/{{.Slug}}" class="article-card-link">
           <div class="article-card-img">
             <img src="{{.CoverURL}}" alt="{{.Title}}" />
             <span class="article-card-tag">{{.Tag}}</span>

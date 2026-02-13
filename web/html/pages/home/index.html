@@ -1,51 +1,51 @@
-{{define "title"}}หน้าแรก – {{.Website}}{{end}} {{define "content"}}
+{{define "title"}}{{t "nav_home"}} – {{.Website}}{{end}} {{define "content"}}
 <main class="page-home">
   <section class="hero">
     <h1>{{.Website}}</h1>
-    <p>มังงะใหม่ มาแรง และเรตติ้งสูงสุด</p>
+    <p>{{t "home_subtitle"}}</p>
   </section>
 
   <section id="NewManga" class="NewManga section">
-    <h2 class="section-title">มังงะใหม่</h2>
+    <h2 class="section-title">{{t "new_manga"}}</h2>
     <div class="scroll-wrap">
-      <button class="scroll-btn scroll-left" aria-label="เลื่อนซ้าย">
+      <button class="scroll-btn scroll-left" aria-label="{{t "scroll_left"}}">
         &#10094;
       </button>
       <div class="manga-scroll">
         {{range .NewManga}}{{template "components/manga-card" .}}{{end}}
       </div>
-      <button class="scroll-btn scroll-right" aria-label="เลื่อนขวา">
+      <button class="scroll-btn scroll-right" aria-label="{{t "scroll_right"}}">
         &#10095;
       </button>
     </div>
   </section>
 
   <section id="HotManga" class="HotManga section">
-    <h2 class="section-title">มังงะมาแรง</h2>
+    <h2 class="section-title">{{t "trending_manga"}}</h2>
     <div class="scroll-wrap">
-      <button class="scroll-btn scroll-left" aria-label="เลื่อนซ้าย">
+      <button class="scroll-btn scroll-left" aria-label="{{t "scroll_left"}}">
         &#10094;
       </button>
       <div class="manga-scroll">
         {{range .TrendingManga}}{{template "components/manga-card" .}}{{end}}
       </div>
-      <button class="scroll-btn scroll-right" aria-label="เลื่อนขวา">
+      <button class="scroll-btn scroll-right" aria-label="{{t "scroll_right"}}">
         &#10095;
       </button>
     </div>
   </section>
 
   <section id="Top10Rating" class="Top10Rating section">
-    <h2 class="section-title">Top 10 เรตติ้ง</h2>
+    <h2 class="section-title">{{t "top10_rating"}}</h2>
     <div class="tabs" role="tablist">
       <button type="button" class="tab active" data-tab="monthly" role="tab">
-        ประจำเดือน
+        {{t "tab_monthly"}}
       </button>
       <button type="button" class="tab" data-tab="yearly" role="tab">
-        ประจำปี
+        {{t "tab_yearly"}}
       </button>
       <button type="button" class="tab" data-tab="alltime" role="tab">
-        ตลอดกาล
+        {{t "tab_alltime"}}
       </button>
     </div>
     <div class="tab-panels">
@@ -78,19 +78,11 @@
     tabs.forEach(function (btn) {
       btn.addEventListener("click", function () {
         var id = this.getAttribute("data-tab");
-        tabs.forEach(function (b) {
-          b.classList.remove("active");
-        });
-        panels.forEach(function (p) {
-          p.classList.remove("active");
-          p.hidden = true;
-        });
+        tabs.forEach(function (b) { b.classList.remove("active"); });
+        panels.forEach(function (p) { p.classList.remove("active"); p.hidden = true; });
         this.classList.add("active");
         var panel = document.getElementById("panel-" + id);
-        if (panel) {
-          panel.classList.add("active");
-          panel.hidden = false;
-        }
+        if (panel) { panel.classList.add("active"); panel.hidden = false; }
       });
     });
   })();
@@ -102,12 +94,8 @@
     var btnR = wrap.querySelector(".scroll-right");
     if (!row || !btnL || !btnR) return;
     var step = 400;
-    btnL.addEventListener("click", function () {
-      row.scrollBy({ left: -step, behavior: "smooth" });
-    });
-    btnR.addEventListener("click", function () {
-      row.scrollBy({ left: step, behavior: "smooth" });
-    });
+    btnL.addEventListener("click", function () { row.scrollBy({ left: -step, behavior: "smooth" }); });
+    btnR.addEventListener("click", function () { row.scrollBy({ left: step, behavior: "smooth" }); });
   });
 </script>
 {{end}}

@@ -1,9 +1,9 @@
-{{define "title"}}{{if .Article}}{{.Article.Title}}{{else}}ไม่พบบทความ{{end}} – {{.Website}}{{end}}
+{{define "title"}}{{if .Article}}{{.Article.Title}}{{else}}{{t "article_not_found"}}{{end}} – {{.Website}}{{end}}
 {{define "content"}}
 <main class="page-article-info">
   {{if .Article}}
   <section class="section">
-    <a href="/articles" class="back-link">&larr; กลับไปหน้าบทความ</a>
+    <a href="{{langPrefix}}/articles" class="back-link">&larr; {{t "back_to_articles"}}</a>
 
     <article class="article-detail">
       <div class="article-detail-cover">
@@ -20,14 +20,14 @@
 
       <div class="article-detail-body">
         <p>{{.Article.Excerpt}}</p>
-        <p>นี่คือเนื้อหาตัวอย่างของบทความ เมื่อเชื่อม DB จริงจะแสดงเนื้อหาเต็ม</p>
+        <p>{{t "article_mock_body"}}</p>
       </div>
     </article>
   </section>
   {{else}}
   <section class="section">
-    <p class="placeholder">ไม่พบบทความนี้</p>
-    <a href="/articles" class="back-link">&larr; กลับไปหน้าบทความ</a>
+    <p class="placeholder">{{t "article_not_found"}}</p>
+    <a href="{{langPrefix}}/articles" class="back-link">&larr; {{t "back_to_articles"}}</a>
   </section>
   {{end}}
 </main>
